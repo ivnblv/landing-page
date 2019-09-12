@@ -1,0 +1,82 @@
+@import "variables";
+@import "mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 60%;
+  margin: auto;
+  @include tablet {
+    width: 80%;
+  }
+}
+html {
+  font-size: 16px;
+  @include tablet {
+    font-size: 14px;
+  }
+  @include mobile {
+    font-size: 12px;
+  }
+}
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: $main-color;
+  color: $text-light;
+  line-height: 2;
+  font-family: "Oswald", sans-serif;
+  @include tablet {
+    overflow-y: scroll;
+  }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+nav {
+  position: fixed;
+  left: 0;
+  top: 40%;
+  z-index: 20;
+  padding-left: 5%;
+
+  @include tablet {
+    display: none;
+  }
+
+  .nav-btn {
+    border: none;
+    display: block;
+    outline: none;
+    background-color: $text-light;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    &:hover {
+      background-color: gray;
+    }
+    &.current-link {
+      background-color: $color-highlight;
+    }
+  }
+}
+h1,
+h2,
+h3 {
+  font-family: "Teko", sans-serif;
+}
+ul {
+  list-style-type: none;
+}
+
+@import "./partials/partials";
