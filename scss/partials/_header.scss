@@ -15,19 +15,10 @@ header {
 }
 .logo {
   height: 90%;
-  // color: $color-highlight;
-  // font-size: 4rem;
-
-  // @include mobile {
-  //   font-size: 1.4rem;
-  // }
+  cursor: pointer;
   img {
     max-height: 100%;
     width: auto;
-  }
-  a {
-    text-decoration: none;
-    color: $color-highlight;
   }
 }
 

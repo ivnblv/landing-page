@@ -1,11 +1,13 @@
 const sections = document.querySelectorAll("section");
 let currentSection = 0;
+let canScroll = true;
 
 const scroll = new SmoothScroll('a[href*="#"]', {
-  speed: 700,
+  speed: 1200,
   speedAsDuration: true,
   clip: true,
-  updateURL: false
+  updateURL: false,
+  easing: "easeInOutQuart"
 });
 
 const previewText = () => {
@@ -33,13 +35,25 @@ const previewText = () => {
   }, 5000);
 };
 
-const generateLinks = () => {
-  const navLinks = [];
+const generateNavBtns = () => {
   Object.keys(sections).forEach(section => {
-    const newLink = `<li><a href = '#${section}' id = 'section-${section}-link' class = 'nav-btn'></a></li>`;
-    navLinks.push(newLink);
+    const newBtn = document.createElement("button");
+    newBtn.id = `section-${section}-link`;
+    newBtn.className = "nav-btn";
+    newBtn.addEventListener("click", navBtnScroll);
+    document.getElementById("nav-btns").appendChild(newBtn);
   });
-  document.getElementById("nav-links").innerHTML = navLinks.join("");
+  document.getElementById("home").addEventListener("click", () => {
+    if (canScroll) {
+      scroll.animateScroll(document.querySelector("body"));
+    }
+  });
+};
+const navBtnScroll = e => {
+  const id = e.target.id.replace(/[^0-9]/g, "");
+  if (canScroll) {
+    scroll.animateScroll(document.getElementById(id));
+  }
 };
 
 const observeSections = () => {
@@ -64,13 +78,12 @@ const observeSections = () => {
   sections.forEach(section => observer.observe(section));
 };
 
-const scrollBehavior = () => {
-  let canScroll = true;
+const navigation = () => {
   const trackScroll = () => {
     canScroll = !canScroll;
   };
-  document.addEventListener("scrollStart", trackScroll, false);
-  document.addEventListener("scrollStop", trackScroll, false);
+  document.addEventListener("scrollStart", trackScroll);
+  document.addEventListener("scrollStop", trackScroll);
 
   window.onresize = () => {
     if (window.innerWidth > 1300) {
@@ -103,6 +116,6 @@ const scrollBehavior = () => {
 };
 
 previewText();
-generateLinks();
+generateNavBtns();
 observeSections();
-scrollBehavior();
+navigation();
