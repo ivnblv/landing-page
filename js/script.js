@@ -13,26 +13,21 @@ const scroll = new SmoothScroll('a[href*="#"]', {
 const previewText = () => {
   const previewTitle = document.getElementById("preview-title");
   const textArr = [
+    "Lorem ipsum",
     "Dolor sit",
     "Consequatur",
     "Amet consectetur",
     "Adipisicing",
-    "Dolores magni",
-    "Lorem ipsum"
+    "Dolores magni"
   ];
   let count = 0;
-
   const changeText = () => {
-    if (count < textArr.length) {
-      previewTitle.innerHTML = `<h1 class = "preview-text">${
-        textArr[count]
-      } </h1>`;
-      count++;
-    } else count = 0;
+    count < textArr.length - 1 ? count++ : (count = 0);
+    previewTitle.innerHTML = `<h1 class="preview-text">${textArr[count]}</h1>`;
   };
   setInterval(() => {
     changeText();
-  }, 5000);
+  }, 4000);
 };
 
 const generateNavBtns = () => {
