@@ -23,8 +23,7 @@ html {
   }
 }
 body {
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: $main-color;
   color: $text-light;
   line-height: 2;
